@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriella & Handika Wedding</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-pink-50 text-gray-800 font-sans relative">
+  <audio autoplay loop hidden>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+  </audio>
+
+  <section class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-200 to-pink-400 text-center p-6 relative overflow-hidden" data-aos="fade-in">
+    <div class="absolute w-96 h-96 bg-white opacity-10 rounded-full top-10 -left-20 animate-pulse"></div>
+    <div class="absolute w-96 h-96 bg-white opacity-10 rounded-full bottom-10 -right-20 animate-ping"></div>
+    <h1 class="text-5xl font-bold text-white mb-2 animate-fade-in">Gabriella & Handika</h1>
+    <p class="text-xl italic text-white mb-6 animate-fade-in">"Dan di antara jutaan manusia, aku memilih kamu."</p>
+    <a href="#detail" class="bg-white text-pink-500 px-6 py-2 rounded-full shadow-lg hover:bg-pink-100 transition animate-fade-in">Lihat Undangan</a>
+  </section>
+
+  <section id="detail" class="p-8 bg-white" data-aos="fade-up">
+    <h2 class="text-4xl font-semibold text-center mb-8">Detail Acara</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-pink-100 p-6 rounded-xl shadow-xl" data-aos="fade-right">
+        <h3 class="text-2xl font-bold mb-2">Akad Nikah</h3>
+        <p>🗓 Sabtu, 12 Juli 2025</p>
+        <p>🕘 09.00 - 11.00 WIB</p>
+        <p>📍 Masjid Agung Batam</p>
+      </div>
+      <div class="bg-pink-100 p-6 rounded-xl shadow-xl" data-aos="fade-left">
+        <h3 class="text-2xl font-bold mb-2">Resepsi</h3>
+        <p>🗓 Sabtu, 12 Juli 2025</p>
+        <p>🕛 12.30 - 18.00 WIB</p>
+        <p>📍 Ballroom Hotel Planet Holiday</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-8 bg-pink-50" data-aos="fade-up">
+    <h2 class="text-4xl font-semibold text-center mb-8">Mempelai</h2>
+    <div class="grid md:grid-cols-2 gap-6 text-center">
+      <div data-aos="zoom-in">
+        <img src="https://via.placeholder.com/200x200" alt="Gabriella" class="mx-auto rounded-full mb-4 border-4 border-pink-300">
+        <h3 class="text-2xl font-bold">Gabriella Kleantha Putri</h3>
+        <p>Putri dari Bapak X & Ibu Y</p>
+      </div>
+      <div data-aos="zoom-in">
+        <img src="https://via.placeholder.com/200x200" alt="Handika" class="mx-auto rounded-full mb-4 border-4 border-pink-300">
+        <h3 class="text-2xl font-bold">Handika Pratama Lim</h3>
+        <p>Putra dari Bapak Z & Ibu W</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-8 bg-white" data-aos="fade-up">
+    <h2 class="text-4xl font-semibold text-center mb-8">Galeri</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <img src="https://via.placeholder.com/400x500" alt="Foto 1" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" />
+      <img src="https://via.placeholder.com/400x500" alt="Foto 2" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" />
+      <img src="https://via.placeholder.com/400x500" alt="Foto 3" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" />
+      <img src="https://via.placeholder.com/400x500" alt="Foto 4" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" />
+      <img src="https://via.placeholder.com/400x500" alt="Foto 5" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" />
+      <img src="https://via.placeholder.com/400x500" alt="Foto 6" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" />
+      <img src="https://via.placeholder.com/400x500" alt="Foto 7" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" />
+      <img src="https://via.placeholder.com/400x500" alt="Foto 8" class="rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" />
+    </div>
+    <div class="mt-8 text-center">
+      <video controls class="mx-auto rounded-lg shadow-xl w-full max-w-3xl">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Video tidak tersedia.
+      </video>
+    </div>
+  </section>
+
+  <section class="p-8 bg-pink-100" data-aos="fade-up">
+    <h2 class="text-4xl font-semibold text-center mb-8">Ucapan & Kehadiran</h2>
+    <form class="max-w-xl mx-auto space-y-4" data-aos="fade-up">
+      <input type="text" placeholder="Nama Anda" class="w-full p-3 border border-pink-300 rounded-lg shadow-sm" />
+      <textarea placeholder="Ucapan untuk mempelai" class="w-full p-3 border border-pink-300 rounded-lg shadow-sm"></textarea>
+      <select class="w-full p-3 border border-pink-300 rounded-lg shadow-sm">
+        <option>Konfirmasi Kehadiran</option>
+        <option>Hadir</option>
+        <option>Tidak Hadir</option>
+      </select>
+      <button type="submit" class="bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 transition">Kirim</button>
+    </form>
+  </section>
+
+  <footer class="text-center text-sm text-gray-500 p-4">
+    © 2025 Gabriella & Handika. Terima kasih atas doa dan restu Anda.
+  </footer>
+
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
