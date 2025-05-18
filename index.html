@@ -1,229 +1,210 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HANDIKA PRATAMA LIM PORTOFOLIO</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
-            margin: 0;
-            overflow-x: hidden;
-            text-align: center;
-            position: relative;
-        }
-        .loading-screen {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 1000;
-            animation: fadeOut 3s forwards;
-            animation-delay: 3s;
-        }
-        .lightning {
-            width: 150px;
-            height: 150px;
-            background: yellow;
-            box-shadow: 0 0 40px yellow;
-            animation: flash 0.5s infinite;
-        }
-        @keyframes flash {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 1; }
-        }
-        @keyframes fadeOut {
-            to { opacity: 0; visibility: hidden; }
-        }
-        header {
-            padding: 50px 20px;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px;
-        }
-        .profile img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px white;
-        }
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px;
-        }
-        .skill-box {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px 25px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            font-size: 18px;
-        }
-        .projects, .founder {
-            padding: 40px;
-            animation: fadeInUp 1.5s ease-in-out;
-        }
-        .project a {
-            display: inline-block;
-            background: orange;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .project a:hover {
-            background: darkorange;
-        }
-        footer {
-            background: black;
-            color: white;
-            padding: 20px;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .snowflake {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: white;
-            opacity: 0.8;
-            border-radius: 50%;
-            top: -10px;
-            animation: snowfall 5s linear infinite;
-        }
-        @keyframes snowfall {
-            from { transform: translateY(0); }
-            to { transform: translateY(100vh); }
-        }
-        .footer-text {
-            margin-top: 20px;
-            font-size: 14px;
-            color: gray;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
-            margin: 0;
-            overflow-x: hidden;
-            text-align: center;
-            position: relative;
-        }
-        .experience {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-        .experience h2 {
-            margin-bottom: 20px;
-        }
-        .experience-box {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            backdrop-filter: blur(5px);
-        }
-    </style>
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HANDIKA PRATAMA LIM PORTOFOLIO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      animation: fadeOut 2s forwards;
+      animation-delay: 3s;
+    }
+    .lightning {
+      width: 120px;
+      height: 120px;
+      background: yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 60px yellow;
+      animation: flash 0.5s infinite;
+    }
+    @keyframes flash {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+    header {
+      padding: 60px 20px 20px;
+      font-size: 32px;
+      font-weight: 700;
+      animation: fadeInDown 1.5s ease-out;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .profile {
+      padding: 50px 20px;
+      animation: fadeInUp 1.5s ease-out;
+    }
+    .profile img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px white;
+      margin-bottom: 20px;
+    }
+    .skills, .projects, .experience, .founder {
+      padding: 40px 20px;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .skill-box {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 12px 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      font-size: 16px;
+    }
+    .project a {
+      display: inline-block;
+      margin: 10px 0;
+      background: #ff9900;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .project a:hover {
+      background: #e57c00;
+    }
+    .experience-box {
+      background: rgba(255,255,255,0.2);
+      margin: 10px auto;
+      padding: 15px;
+      max-width: 600px;
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+    }
+    .founder h2, .projects h2, .experience h2 {
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    footer {
+      background: #111;
+      padding: 30px;
+      font-size: 14px;
+    }
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .footer-text {
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-    <div class="loading-screen">
-        <h1>Loading Periksa Keamanan...</h1>
-        <div class="lightning"></div>
-    </div>
-    
-    <header>
-        <h1>HANDIKA PRATAMA LIM PORTOFOLIO</h1>
-    </header>
-    
-    <section class="profile">
-        <img src="profile.jpg" alt="Handika Pratama Lim">
-        <h2>Handika Pratama Lim</h2>
-        <p>Lahir di Batam, 7 April 2011</p>
-        <p>Pekerjaan : Cloud Computing Management</p>
-        <p>Status : Belum Kawin Alias Pelajar</p>
-        <p>Hobby: DESIGN GRAFIS</p>
-    </section>
-    
-    <section class="skills">
-        <div class="skill-box">Front End Developer</div>
-        <div class="skill-box">HTML</div>
-        <div class="skill-box">CSS</div>
-        <div class="skill-box">JavaScript</div>
-        <div class="skill-box">Node.js</div>
-        <div class="skill-box">PHP</div>
-        <div class="skill-box">Cyber Secured</div>
-        <div class="skill-box">Design Grafis</div>
-        <div class="skill-box">Video Cinematic Editing</div>
-        <div class="skill-box">Video Editor</div>
-    </section>
-    
-    <section class="projects">
-        <h2>PROJECT</h2>
-        <div class="project">
-            <h3>Website Dashboard ColonySMP</h3>
-            <a href="https://colonysmp.xyz/">Kunjungi Website</a>
-            <p>Website dashboard untuk server Minecraft ColonySMP, menampilkan informasi server, statistik pemain, dan sistem manajemen akun.</p>
-        </div>
-        <div class="project">
-            <h3>Website Advent School Batam</h3>
-            <a href="https://adventschoolbatam.my.id/">Kunjungi Website</a>
-            <p>Website resmi Advent School Batam yang menyediakan informasi akademik, pendaftaran siswa, dan berita sekolah.</p>
-        </div>
-    </section>
+  <div class="loading-screen">
+    <h1>Memuat Portofolio...</h1>
+    <div class="lightning"></div>
+  </div>
 
-    <section class="experience">
-        <h2>Pengalaman Kerja</h2>
-        <div class="experience-box">Pernah bekerja di SEKOLAH PERMATA HARAPAN PREMIER INDONESIA sebagai Learning Website Management</div>
-        <div class="experience-box">Pernah bekerja di NoxCloud sebagai Seller VPS/RDP Binance</div>
-        <div class="experience-box">Pernah bekerja di Colony SMP sebagai Server Developer</div>
-        <div class="experience-box">Pernah bekerja di Fornet Craft sebagai Styling Developer</div>
-        <div class="experience-box">Pernah bekerja di Khavolux Craft sebagai Front End Server Developer</div>
-    </section>
-    
-    <section class="founder">
-        <h2>Founder Of</h2>
-        <h3>WAKA ENTERTAINMENT</h3>
-        <p>WAKA Entertainment adalah platform hiburan yang berfokus pada pembuatan konten digital, termasuk produksi video, desain grafis, dan media sosial.</p>
-    </section>
-    
-    <footer>
-        <h3>Partnership</h3>
-        <ul>
-            <li>ColonySMP</li>
-            <li>CornezMC</li>
-            <li>LightFantasy</li>
-            <li>Sekolah Permata Harapan Premier Indonesia</li>
-            <li>KhavoluxCraft</li>
-            <li>NoxCloud</li>
-            <li>FornetCraft</li>
-            <li>HadekaID</li>
-            <li>HashibaGroup</li>
-        </ul>
-        <p class="footer-text">© 2025 Handika. All Rights Reserved. | POWERED BY WAKA ENTERTAIMENT</p>
-    </footer>
+  <header>
+    <h1>HANDIKA PRATAMA LIM PORTOFOLIO</h1>
+  </header>
+
+  <section class="profile">
+    <img src="profile.jpg" alt="Handika Pratama Lim">
+    <h2>Handika Pratama Lim</h2>
+    <p>Lahir di Batam, 7 April 2011</p>
+    <p>Pekerjaan: Cloud Computing Management</p>
+    <p>Status: Pelajar</p>
+    <p>Hobi: Design Grafis</p>
+    <p>Kontak: <a href="https://wa.me/6289505666127" style="color: #fff; text-decoration: underline;">0895-0566-6127</a></p>
+  </section>
+
+  <section class="skills">
+    <div class="skill-box">Front End Developer</div>
+    <div class="skill-box">HTML</div>
+    <div class="skill-box">CSS</div>
+    <div class="skill-box">JavaScript</div>
+    <div class="skill-box">Node.js</div>
+    <div class="skill-box">PHP</div>
+    <div class="skill-box">Cyber Secured</div>
+    <div class="skill-box">Design Grafis</div>
+    <div class="skill-box">Video Cinematic Editing</div>
+    <div class="skill-box">Video Editor</div>
+  </section>
+
+  <section class="projects">
+    <h2>PROJECT</h2>
+    <div class="project">
+      <h3>Website Dashboard ColonySMP</h3>
+      <a href="https://colonysmp.xyz/">Kunjungi Website</a>
+      <p>Dashboard server Minecraft yang menampilkan info server, statistik pemain, dan sistem akun.</p>
+    </div>
+    <div class="project">
+      <h3>Website Advent School Batam</h3>
+      <a href="https://adventschoolbatam.my.id/">Kunjungi Website</a>
+      <p>Website resmi Advent School Batam untuk informasi akademik dan pendaftaran siswa.</p>
+    </div>
+  </section>
+
+  <section class="experience">
+    <h2>Pengalaman Kerja</h2>
+    <div class="experience-box">Learning Website Management - SEKOLAH PERMATA HARAPAN</div>
+    <div class="experience-box">Seller VPS/RDP Binance - NoxCloud</div>
+    <div class="experience-box">Server Developer - Colony SMP</div>
+    <div class="experience-box">Styling Developer - Fornet Craft</div>
+    <div class="experience-box">Front End Developer - Khavolux Craft</div>
+  </section>
+
+  <section class="founder">
+    <h2>Founder Of</h2>
+    <h3>WAKA ENTERTAINMENT</h3>
+    <p>Platform hiburan yang memproduksi konten digital seperti video, desain grafis, dan media sosial.</p>
+  </section>
+
+  <footer>
+    <h3>Partnership</h3>
+    <ul>
+      <li>ColonySMP</li>
+      <li>CornezMC</li>
+      <li>LightFantasy</li>
+      <li>Sekolah Permata Harapan</li>
+      <li>KhavoluxCraft</li>
+      <li>NoxCloud</li>
+      <li>FornetCraft</li>
+      <li>HadekaID</li>
+      <li>HashibaGroup</li>
+    </ul>
+    <p class="footer-text">© 2025 Handika. All Rights Reserved. | Powered by WAKA ENTERTAINMENT</p>
+  </footer>
 </body>
 </html>
