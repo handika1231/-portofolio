@@ -2,151 +2,270 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HANDIKA PRATAMA LIM PORTOFOLIO</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Handika Pratama Lim Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
+      font-family: 'Quicksand', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
       text-align: center;
-      overflow-x: hidden;
-    }
-    .loading-screen {
-      position: fixed;
-      inset: 0;
-      background: #000;
+      padding: 30px 20px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      animation: fadeOut 2s forwards;
-      animation-delay: 3s;
-    }
-    .lightning {
-      width: 120px;
-      height: 120px;
-      background: yellow;
-      border-radius: 50%;
-      box-shadow: 0 0 60px yellow;
-      animation: flash 0.5s infinite;
-    }
-    @keyframes flash {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
+      justify-content: space-between;
     }
     header {
-      padding: 60px 20px 20px;
-      font-size: 32px;
-      font-weight: 700;
-      animation: fadeInDown 1.5s ease-out;
+      margin-bottom: 40px;
     }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    header h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      color: #6b5b95;
+      animation: fadeInDown 1s ease forwards;
     }
+
+    /* Profile Section */
     .profile {
-      padding: 50px 20px;
-      animation: fadeInUp 1.5s ease-out;
+      background: #ffffff;
+      max-width: 400px;
+      margin: 0 auto 50px;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(107, 91, 149, 0.15);
+      animation: fadeInUp 1s ease forwards;
     }
     .profile img {
-      width: 180px;
-      height: 180px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
-      box-shadow: 0 0 20px white;
       margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(107, 91, 149, 0.2);
+      object-fit: cover;
     }
-    .skills, .projects, .experience, .founder {
-      padding: 40px 20px;
-      animation: fadeInUp 1.5s ease-in-out;
+    .profile h2 {
+      font-size: 1.8rem;
+      color: #6b5b95;
+      margin-bottom: 10px;
+      font-weight: 600;
     }
+    .profile p {
+      font-size: 1rem;
+      color: #777;
+      margin-bottom: 8px;
+    }
+    .profile a {
+      color: #6b5b95;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .profile a:hover {
+      color: #a594d1;
+    }
+
+    /* Skills */
     .skills {
+      max-width: 600px;
+      margin: 0 auto 50px;
       display: flex;
       flex-wrap: wrap;
+      gap: 15px;
       justify-content: center;
-      gap: 12px;
     }
     .skill-box {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 12px 20px;
-      border-radius: 12px;
-      backdrop-filter: blur(8px);
-      font-size: 16px;
+      background: #dcd6f7;
+      color: #6b5b95;
+      font-weight: 600;
+      padding: 12px 25px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(107, 91, 149, 0.1);
+      transition: background 0.3s ease;
+      cursor: default;
+    }
+    .skill-box:hover {
+      background: #a594d1;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(107, 91, 149, 0.3);
+    }
+
+    /* Section Titles */
+    section h2 {
+      color: #6b5b95;
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* Projects */
+    .project {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 6px 25px rgba(107, 91, 149, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .project:hover {
+      box-shadow: 0 10px 40px rgba(107, 91, 149, 0.2);
+    }
+    .project h3 {
+      margin-bottom: 12px;
+      color: #5a487e;
     }
     .project a {
       display: inline-block;
-      margin: 10px 0;
-      background: #ff9900;
+      padding: 10px 22px;
+      background: #6b5b95;
       color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
+      border-radius: 30px;
       text-decoration: none;
-      transition: background 0.3s;
+      font-weight: 600;
+      transition: background 0.3s ease;
     }
     .project a:hover {
-      background: #e57c00;
+      background: #a594d1;
     }
+    .project p {
+      margin-top: 12px;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    /* Experience */
     .experience-box {
-      background: rgba(255,255,255,0.2);
-      margin: 10px auto;
-      padding: 15px;
       max-width: 600px;
-      border-radius: 10px;
-      backdrop-filter: blur(5px);
+      margin: 10px auto 20px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 6px 25px rgba(107, 91, 149, 0.1);
+      color: #555;
+      font-weight: 500;
+      transition: box-shadow 0.3s ease;
     }
-    .founder h2, .projects h2, .experience h2 {
-      margin-bottom: 15px;
-      font-weight: 600;
+    .experience-box:hover {
+      box-shadow: 0 10px 40px rgba(107, 91, 149, 0.2);
     }
-    footer {
-      background: #111;
-      padding: 30px;
-      font-size: 14px;
+
+    /* Founder */
+    .founder {
+      max-width: 600px;
+      margin: 40px auto 50px;
+      background: #fff;
+      padding: 25px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(107, 91, 149, 0.15);
+      color: #5a487e;
     }
-    footer ul {
+    .founder h3 {
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    /* Partner Section */
+    .partner {
+      max-width: 600px;
+      margin: 40px auto 60px;
+      background: #fff;
+      padding: 25px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(107, 91, 149, 0.15);
+      color: #5a487e;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    .partner h2 {
+      margin-bottom: 20px;
+    }
+    .partner-list {
       list-style: none;
       padding: 0;
-      margin: 0 auto 20px;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 12px;
+      gap: 25px;
+      flex-wrap: wrap;
     }
-    .footer-text {
-      color: #aaa;
+    .partner-list li a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #6b5b95;
+      padding: 10px 18px;
+      border: 2px solid #6b5b95;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .partner-list li a:hover {
+      background: #a594d1;
+      color: white;
+      border-color: #a594d1;
+    }
+
+    /* Footer */
+    footer {
+      font-size: 14px;
+      color: #777;
+      padding: 15px 20px;
+      border-top: 1px solid #ddd;
+      user-select: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="loading-screen">
-    <h1>Memuat Portofolio...</h1>
-    <div class="lightning"></div>
-  </div>
 
   <header>
-    <h1>HANDIKA PRATAMA LIM PORTOFOLIO</h1>
+    <h1>Handika Pratama Lim Portfolio</h1>
   </header>
 
   <section class="profile">
-    <img src="profile.jpg" alt="Handika Pratama Lim">
+    <img src="profile.jpg" alt="Handika Pratama Lim" />
     <h2>Handika Pratama Lim</h2>
     <p>Lahir di Batam, 7 April 2011</p>
     <p>Pekerjaan: Cloud Computing Management</p>
     <p>Status: Pelajar</p>
     <p>Hobi: Design Grafis</p>
-    <p>Kontak: <a href="https://wa.me/6289505666127" style="color: #fff; text-decoration: underline;">0895-0566-6127</a></p>
+    <p>Kontak: <a href="https://wa.me/6289505666127" target="_blank" rel="noopener noreferrer">0895-0566-6127</a></p>
   </section>
 
   <section class="skills">
@@ -163,15 +282,15 @@
   </section>
 
   <section class="projects">
-    <h2>PROJECT</h2>
+    <h2>Project</h2>
     <div class="project">
       <h3>Website Dashboard ColonySMP</h3>
-      <a href="https://colonysmp.xyz/">Kunjungi Website</a>
+      <a href="https://colonysmp.xyz/" target="_blank" rel="noopener noreferrer">Kunjungi Website</a>
       <p>Dashboard server Minecraft yang menampilkan info server, statistik pemain, dan sistem akun.</p>
     </div>
     <div class="project">
       <h3>Website Advent School Batam</h3>
-      <a href="https://adventschoolbatam.my.id/">Kunjungi Website</a>
+      <a href="https://adventschoolbatam.my.id/" target="_blank" rel="noopener noreferrer">Kunjungi Website</a>
       <p>Website resmi Advent School Batam untuk informasi akademik dan pendaftaran siswa.</p>
     </div>
   </section>
@@ -191,20 +310,18 @@
     <p>Platform hiburan yang memproduksi konten digital seperti video, desain grafis, dan media sosial.</p>
   </section>
 
-  <footer>
-    <h3>Partnership</h3>
-    <ul>
-      <li>ColonySMP</li>
-      <li>CornezMC</li>
-      <li>LightFantasy</li>
-      <li>Sekolah Permata Harapan</li>
-      <li>KhavoluxCraft</li>
-      <li>NoxCloud</li>
-      <li>FornetCraft</li>
-      <li>HadekaID</li>
-      <li>HashibaGroup</li>
+  <section class="partner">
+    <h2>Partner</h2>
+    <ul class="partner-list">
+      <li><a href="https://brexlerstudio.com" target="_blank" rel="noopener noreferrer">Brexler Studio</a></li>
+      <li><a href="https://panel.garudacloud.id" target="_blank" rel="noopener noreferrer">Garuda Cloud Panel</a></li>
+      <li><a href="https://gebi-dika.xyz" target="_blank" rel="noopener noreferrer">Gebi Dika</a></li>
     </ul>
-    <p class="footer-text">© 2025 Handika. All Rights Reserved. | Powered by WAKA ENTERTAINMENT</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Handika. All Rights Reserved. | Powered by WAKA ENTERTAINMENT</p>
   </footer>
+
 </body>
 </html>
