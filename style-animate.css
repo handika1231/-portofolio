@@ -1,0 +1,12 @@
+
+.animate { animation-duration: 1s; animation-fill-mode: both; }
+.fadeInUp { animation-name: fadeInUp; }
+.fadeInLeft { animation-name: fadeInLeft; }
+.fadeInRight { animation-name: fadeInRight; }
+.fadeInDown { animation-name: fadeInDown; }
+.zoomIn { animation-name: zoomIn; }
+.slideInUp { animation-name: slideInUp; }
+.pulse { animation-name: pulse; animation-iteration-count: infinite; animation-duration: 2.5s; }
+.rubberBand { animation-name: rubberBand; animation-duration: 1.2s; }
+
+.hover-animate:hover { animation-name: pulse; animation-duration: 0.8s; }
