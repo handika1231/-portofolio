@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="icon" href="https://files.catbox.moe/y2w5nm.jpg" type="image/png" />
+    <meta property="og:title" content="⎣ Vy Host ⎤" />
+    <meta property="og:description" content="Layanan hosting murah, cepat, dan terpercaya 😎" />
+    <meta property="og:image" content="https://files.catbox.moe/y2w5nm.jpg" />
+    <meta property="og:url" content="https://vy-host.my.id" />
+    <meta property="og:type" content="website" />
+    <title>⎣ Vy Host ⎤</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    img, p, div {
+            user-select: none;
+        }
+    .gradient-bg {
+      background: linear-gradient(135deg, #ffffff 0%, #e6f0ff 50%, #ffebee 100%);
+    }
+    .card-shadow {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .btn-generate {
+      background: linear-gradient(45deg, #3b82f6, #ef4444);
+      transition: all 0.3s ease;
+    }
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    }
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(0.98);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+      }
+      100% {
+        transform: scale(0.98);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+      }
+    }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="w-full max-w-2xl">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">ᴠʏ ʜᴏꜱᴛ</h1>
+      <p class="text-gray-600">ᴘᴀʏᴍᴇɴᴛ ᴘᴀɢᴇ</p>
+    </div>
+
+    <div class="bg-white rounded-xl p-6 card-shadow">
+      <!-- Software Selection -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700 mb-2"><i class="fas fa-laptop-code text-blue-500 mr-2"></i>Select Software</label>
+        <select id="selectorA" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200">
+          <option value="" disabled selected>Pilih Platform</option>
+          <option value="nodejs">Bot WhatsApp</option>
+          <option value="mcjava">Minecraft Java</option>
+          <option value="mcbedrock">Minecraft Bedrock</option>
+        </select>
+      </div>
+
+      <!-- Specifications -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700 mb-2"><i class="fas fa-microchip text-red-500 mr-2"></i>Select specification</label>
+        <select id="selectorB" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200">
+          <option value="" disabled selected>Pilih Harga</option>
+        </select>
+      </div>
+
+      <!-- Username -->
+      <div class="mb-8">
+        <label class="block text-lg font-medium text-gray-700 mb-2"><i class="fas fa-user-circle text-blue-500 mr-2"></i>Username</label>
+        <h4>PASTIKAN USERNAME BENAR</h4>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-user text-gray-400"></i>
+          </div>
+          <input type="text" id="username" class="w-full pl-10 pr-4 py-3 rounded-lg border-2 border-gray-200" placeholder="Enter your username">
+        </div>
+      </div>
+
+      <!-- Generate Button -->
+      <div class="text-center">
+        <button id="generateBtn" class="btn-generate text-white font-bold py-4 px-8 rounded-full text-lg uppercase tracking-wider pulse">
+          <i class="fas fa-qrcode mr-2"></i>Generate QRIS
+        </button>
+      </div>
+    </div>
+
+    <!-- QR Code -->
+    <div id="qrisContainer" class="hidden mt-8 bg-white p-6 rounded-xl card-shadow text-center">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Your QRIS Code</h2>
+      <canvas id="qrisCode" class="mx-auto mb-4 w-48 h-48"></canvas>
+      <p class="text-gray-600 mb-2">QRIS HANYA BERLAKU 5 MENIT, PASTIKAN SCAN SEBELUM EXPIRED</p>
+      <button id="downloadBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition duration-200">
+        <i class="fas fa-download mr-2"></i>Download QRIS
+      </button>
+    </div>
+  </div>
+
+  <div id="qrisContainer" class="hidden mt-8 bg-white p-6 rounded-xl card-shadow text-center">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Your QRIS Code</h2>
+      <canvas id="qrisCode" class="mx-auto mb-4 w-48 h-48"></canvas>
+      <p class="text-gray-600 mb-2">QRIS HANYA BERLAKU 5 MENIT, PASTIKAN SCAN SEBELUM EXPIRED</p>
+      <button id="downloadBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition duration-200">
+        <i class="fas fa-download mr-2"></i>Download QRIS
+      </button>
+    </div>
+  </div>
+
+  <script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+  const dataPlan = {
+  mcjava: [
+    { label: '1GB 1C - Rp. 5K', price: '5000', planName: '1GB 1C' },
+    { label: '2GB 1C - Rp. 10K', price: '10000', planName: '2GB 1C' },
+    { label: '3GB 1C - Rp. 15K', price: '15000', planName: '3GB 1C' },
+    { label: '4GB 2C - Rp. 20K', price: '20000', planName: '4GB 2C' },
+    { label: '5GB 2C - Rp. 25K', price: '25000', planName: '5GB 2C' },
+    { label: '6GB 2C - Rp. 30K', price: '30000', planName: '6GB 2C' },
+    { label: '7GB 3C - Rp. 35K', price: '35000', planName: '7GB 3C' },
+    { label: '8GB 3C - Rp. 40K', price: '40000', planName: '8GB 3C' },
+    { label: '9GB 3C - Rp. 45K', price: '45000', planName: '9GB 3C' },
+    { label: '10GB 4C - Rp. 50K', price: '50000', planName: '10GB 4C' },
+    { label: '11GB 4C - Rp. 55K', price: '55000', planName: '11GB 4C' },
+    { label: '12GB 4C - Rp. 60K', price: '60000', planName: '12GB 4C' },
+    { label: '13GB 4C - Rp. 65K', price: '65000', planName: '13GB 4C' },
+    { label: '14GB 5C - Rp. 70K', price: '70000', planName: '14GB 5C' },
+    { label: '15GB 5C - Rp. 75K', price: '75000', planName: '15GB 5C' }
+  ],
+  mcbedrock: [
+    { label: '1GB 1C - Rp. 4K', price: '4000', planName: '1GB 1C' },
+    { label: '2GB 1C - Rp. 8K', price: '8000', planName: '2GB 1C' },
+    { label: '3GB 1C - Rp. 12K', price: '12000', planName: '3GB 1C' },
+    { label: '4GB 1C - Rp. 15K', price: '15000', planName: '4GB 1C' },
+    { label: '5GB 2C - Rp. 18K', price: '18000', planName: '5GB 2C' },
+    { label: '6GB 2C - Rp. 21K', price: '21000', planName: '6GB 2C' },
+    { label: '7GB 2C - Rp. 24K', price: '24000', planName: '7GB 2C' },
+    { label: '8GB 2C - Rp. 27K', price: '27000', planName: '8GB 2C' },
+    { label: '9GB 3C - Rp. 30K', price: '30000', planName: '9GB 3C' },
+    { label: '10GB 3C - Rp. 33K', price: '33000', planName: '10GB 3C' },
+    { label: '11GB 3C - Rp. 36K', price: '36000', planName: '11GB 3C' },
+    { label: '12GB 3C - Rp. 39K', price: '39000', planName: '12GB 3C' },
+    { label: '13GB 4C - Rp. 42K', price: '42000', planName: '13GB 4C' },
+    { label: '14GB 4C - Rp. 42K', price: '42000', planName: '14GB 4C' },
+    { label: '15GB 4C - Rp. 45K', price: '45000', planName: '15GB 4C' }
+  ],
+  nodejs: [
+    { label: '1GB 1C - Rp. 1K', price: '1000', planName: '1GB 1C' },
+    { label: '2GB 2C - Rp. 2K', price: '2000', planName: '2GB 2C' },
+    { label: '3GB 3C - Rp. 3K', price: '3000', planName: '3GB 3C' },
+    { label: '4GB 4C - Rp. 4K', price: '4000', planName: '4GB 4C' },
+    { label: '5GB 5C - Rp. 5K', price: '5000', planName: '5GB 5C' },
+    { label: '6GB 6C - Rp. 6K', price: '6000', planName: '6GB 6C' },
+    { label: '7GB 7C - Rp. 7K', price: '7000', planName: '7GB 7C' },
+    { label: '8GB 8C - Rp. 8K', price: '8000', planName: '8GB 8C' },
+    { label: '9GB 8C - Rp. 9K', price: '9000', planName: '9GB 8C' },
+    { label: 'Unli All - Rp. 10K', price: '10000', planName: '0GB 0C' }
+  ]
+ };
+
+  const qrisStatic = '00020101021126670016COM.NOBUBANK.WWW01189360050300000879140214639193521019640303UMI51440014ID.CO.QRIS.WWW0215ID20232951045740303UMI5204541153033605802ID5922SEPZZ STOREE OK13742266011TASIKMALAYA61054611162070703A016304CD00';
+  let qrisCreatedAt = null;
+  let pollingInterval = null;
+  let antreanKosongId = null;
+
+  function convertCRC16(str) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < str.length; i++) {
+      crc ^= str.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) {
+        crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+      }
+    }
+    return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+  }
+
+  function generateDynamicQRIS(qrisStatic, price) {
+    const qrisClean = qrisStatic.slice(0, -4).replace("010211", "010212");
+    const parts = qrisClean.split("5802ID");
+    const nominalTag = "54" + String(price.length).padStart(2, "0") + price;
+    const finalStr = parts[0] + nominalTag + "5802ID" + parts[1];
+    return finalStr + convertCRC16(finalStr);
+  }
+
+  function startPolling(price) {
+    if (pollingInterval) clearInterval(pollingInterval);
+    qrisCreatedAt = new Date();
+
+    pollingInterval = setInterval(() => {
+      fetch("https://gateway.okeconnect.com/")
+        .then(res => res.json())
+        .then(json => {
+          const valid = json.data.find(tx => {
+            const txDate = new Date(tx.date);
+            return txDate > qrisCreatedAt && tx.amount === price;
+          });
+
+          if (valid) {
+            clearInterval(pollingInterval);
+            alert('Transaksi selesai!');
+          }
+        })
+        .catch(err => console.error('Polling error:', err));
+    }, 10000);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const selectorA = document.getElementById('selectorA');
+    const selectorB = document.getElementById('selectorB');
+    const generateBtn = document.getElementById('generateBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const canvas = document.getElementById('qrisCode');
+    const usernameInput = document.getElementById('username');
+
+    selectorA.addEventListener('change', () => {
+      const val = selectorA.value;
+      selectorB.innerHTML = '<option value="">Pilih Paket</option>';
+      if (dataPlan[val]) {
+        dataPlan[val].forEach(item => {
+          const opt = document.createElement('option');
+          opt.textContent = item.label;
+          opt.value = item.price;
+          selectorB.appendChild(opt);
+        });
+      }
+    });
+
+    generateBtn.addEventListener('click', async () => {
+generateBtn.disabled = true;
+Swal.fire({
+    title: 'Mohon tunggu...',
+    text: 'Sedang Mengecek Username',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+  generateBtn.disabled = false;
+  const priceRaw = selectorB.value;
+const username = usernameInput.value.trim();
+
+if (!priceRaw || !username) {
+  generateBtn.disabled = false;
+  return Swal.fire({
+    icon: 'warning',
+    title: 'Oops!',
+    text: 'Isi semua data dulu ya',
+  });
+}
+
+// 🔍 CEK USERNAME DULU
+const cekUser = await fetch(`https://digital.sellinghost.store/api/check-user/${username}`);
+if (!cekUser.ok) {
+  generateBtn.disabled = false;
+  await Swal.fire({
+    icon: 'error',
+    title: 'Username tidak ditemukan',
+    text: 'Silahkan buat terlebih dahulu',
+    confirmButtonText: 'OK'
+  });
+  return window.location.href = 'https://vy-host.my.id/daftar';
+}
+
+  generateBtn.disabled = true;
+  
+  // 🔄 TAMPILKAN LOADING
+  Swal.fire({
+    title: 'Mohon tunggu...',
+    text: 'Sedang membuat QRIS',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+  generateBtn.style.display = 'none';
+  try {
+    const res = await fetch('https://digital.sellinghost.store/api/antri');
+    const data = await res.json();
+    const antreanKosong = data.find(item => item.kosong);
+    if (!antreanKosong) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Antrean penuh!',
+        text: 'Ga ada antrean kosong',
+      });
+    }
+
+    const aid = antreanKosong.id;
+
+    const ambil = await fetch('https://digital.sellinghost.store/api/ambil-antrian', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: aid })
+    });
+    const ambilRes = await ambil.json();
+    if (!ambilRes.success) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Gagal!',
+        text: 'Gagal ambil antrean: ' + ambilRes.message,
+      });
+    }
+
+    const price = (parseInt(priceRaw) - parseInt(aid)).toString();
+    const qrid = price;
+    const finalQris = generateDynamicQRIS(qrisStatic, price);
+
+    QRCode.toDataURL(finalQris, { width: 200 }, async (err, url) => {
+      if (err) {
+        return Swal.fire({
+          icon: 'error',
+          title: 'QR Error!',
+          text: err.message,
+        });
+      }
+
+      const selected = dataPlan[selectorA.value].find(p => p.price === priceRaw);
+      const planName = selected?.planName || '';
+      const jenis = selectorA.value;
+
+      const resSend = await fetch('https://digital.sellinghost.store/api/qris/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, amount: qrid, plan: planName, type: jenis, id: aid })
+      });
+      const resJson = await resSend.json();
+
+      if (resJson.status === 'success') {
+        let timeLeft = 300; // 5 menit
+
+        // ❌ TUTUP loading swal
+        Swal.close();
+
+        const result = await Swal.fire({
+          title: 'Scan QRIS untuk bayar',
+          html: `
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <img src="${url}" width="200" style="margin-bottom:10px;" />
+              <p><b>Total: Rp ${price}</b></p>
+              <p id="countdown" style="font-weight:bold; color:#f00;">Masa berlaku: 05:00</p>
+            </div>
+          `,
+          showConfirmButton: true,
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          didOpen: () => {
+            const countdownEl = document.getElementById('countdown');
+            const timerId = setInterval(() => {
+              if (!countdownEl) return clearInterval(timerId);
+
+              const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+              const s = (timeLeft % 60).toString().padStart(2, '0');
+              countdownEl.innerText = `Masa berlaku: ${m}:${s}`;
+
+              if (timeLeft <= 0) {
+                clearInterval(timerId);
+                countdownEl.innerText = 'QRIS Expired ❌';
+              }
+
+              timeLeft--;
+            }, 1000);
+
+            startPolling(price);
+          }
+        });
+
+        // 🔔 Setelah klik OK
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Perhatian!',
+            html: 'Jika Anda <b>sudah membayar</b>, maka server akan <b>otomatis ditambahkan</b> ke akun Anda.',
+            confirmButtonText: 'Mengerti',
+            allowOutsideClick: false
+          });
+        }
+
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Server Error',
+          text: resJson.msg,
+        });
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops!',
+      text: 'Terjadi error: ' + err.message,
+    });
+  }
+});
+
+
+
+
+
+    downloadBtn.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'qris.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  });
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9572242429d4e220","version":"2025.6.2","r":1,"token":"f8adf13abf2a4e11aa3abfa9d33b4fe0","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+</body>
+</html>
