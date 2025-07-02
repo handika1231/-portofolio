@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dika Media - Upload File</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #0d47a1;
+      background-color: #1e88e5;
       color: white;
+      font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -20,56 +19,62 @@
     h1 {
       margin-bottom: 20px;
     }
-    input[type="file"] {
-      margin-bottom: 10px;
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: #0d47a1;
+      color: white;
+      cursor: pointer;
     }
     #uploadStatus {
       margin-top: 15px;
-    }
-    .link {
-      color: #90caf9;
+      text-align: center;
+      max-width: 80%;
       word-break: break-all;
     }
   </style>
 </head>
 <body>
   <h1>Dika Media - Upload File</h1>
-  <input type="file" id="fileInput" />
-  <button onclick="uploadFile()">Upload</button>
-  <div id="uploadStatus"></div>
+  <input type="file" id="fileInput">
+  <button onclick="uploadFile()">Upload Sekarang</button>
+  <div id="uploadStatus">Pilih file dan klik upload.</div>
 
   <script>
     async function uploadFile() {
       const fileInput = document.getElementById('fileInput');
-      const file = fileInput.files[0];
       const status = document.getElementById('uploadStatus');
+      const file = fileInput.files[0];
+
       if (!file) {
-        alert('Pilih file terlebih dahulu.');
+        alert('Pilih file dulu ya, Aa Dika!');
         return;
       }
 
-      status.innerHTML = 'Mengupload file...';
-
-      // Ganti URL ini dengan endpoint backend sesungguhnya (misal: Firebase, Supabase, atau server sendiri)
-      const dummyUploadURL = 'https://file.io';
+      status.innerHTML = '⏳ Mengupload...';
 
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
 
       try {
-        const response = await fetch(dummyUploadURL, {
+        const response = await fetch('https://file.io/?expires=1w', {
           method: 'POST',
           body: formData
         });
-        const data = await response.json();
+        const result = await response.json();
 
-        if (data.success || data.link) {
-          status.innerHTML = `Sukses! Link file: <br><a class="link" href="${data.link}" target="_blank">${data.link}</a>`;
+        if (result.success) {
+          status.innerHTML = `✅ Berhasil! Link download:<br><a href=\"${result.link}\" target=\"_blank\">${result.link}</a>`;
         } else {
-          status.innerHTML = 'Gagal upload: ' + (data.message || 'Tidak diketahui');
+          status.innerHTML = `❌ Gagal upload: ${result.message || 'Tidak diketahui'}`;
         }
-      } catch (error) {
-        status.innerHTML = 'Gagal upload: ' + error.message;
+      } catch (err) {
+        status.innerHTML = `❌ Error: ${err.message}`;
       }
     }
   </script>
