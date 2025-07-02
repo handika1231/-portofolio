@@ -12,11 +12,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
       color: white;
       text-align: center;
       margin: 0;
+      animation: fadeIn 1s ease-in;
     }
     input, button {
       padding: 10px;
@@ -30,10 +32,30 @@
       color: white;
       cursor: pointer;
       font-weight: bold;
+      transition: transform 0.2s;
     }
-    #result {
+    button:hover {
+      transform: scale(1.05);
+    }
+    #result, #fileList {
       margin-top: 20px;
       word-break: break-all;
+      width: 100%;
+      max-width: 800px;
+    }
+    a.download-link {
+      display: block;
+      margin: 5px 0;
+      color: #fff;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+    a.download-link:hover {
+      color: #ffe082;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -42,6 +64,8 @@
   <input type="file" id="fileInput">
   <button onclick="upload()">Upload</button>
   <div id="result">Pilih file dan upload...</div>
+  <h2>📂 File yang sudah diupload:</h2>
+  <div id="fileList">Memuat daftar file...</div>
 
   <script>
     const supabase = supabase.createClient(
@@ -56,9 +80,11 @@
 
       if (!file) return alert('Pilih file dulu Aa Dika');
 
+      const randomName = Math.random().toString(36).substring(2, 10) + '-' + file.name;
+
       const { data, error } = await supabase.storage
         .from('uploads')
-        .upload('dika/' + file.name, file, {
+        .upload('dika/' + randomName, file, {
           cacheControl: '3600',
           upsert: true
         });
@@ -68,10 +94,36 @@
       } else {
         const { data: publicURL } = supabase.storage
           .from('uploads')
-          .getPublicUrl('dika/' + file.name);
+          .getPublicUrl('dika/' + randomName);
         result.innerHTML = `✅ Link download:<br><a href="${publicURL.publicUrl}" target="_blank">${publicURL.publicUrl}</a>`;
+        loadFileList();
       }
     }
+
+    async function loadFileList() {
+      const fileList = document.getElementById('fileList');
+      fileList.innerHTML = '🔄 Memuat daftar file...';
+
+      const { data, error } = await supabase.storage.from('uploads').list('dika');
+
+      if (error || !data) {
+        fileList.innerHTML = '❌ Gagal memuat daftar file';
+        return;
+      }
+
+      if (data.length === 0) {
+        fileList.innerHTML = '📭 Belum ada file yang diupload.';
+        return;
+      }
+
+      fileList.innerHTML = data.map(item => {
+        const { data: publicURL } = supabase.storage.from('uploads').getPublicUrl('dika/' + item.name);
+        return `<a class="download-link" href="${publicURL.publicUrl}" target="_blank">📄 ${item.name}</a>`;
+      }).join('');
+    }
+
+    // Tampilkan daftar file saat pertama kali dibuka
+    loadFileList();
   </script>
 </body>
 </html>
