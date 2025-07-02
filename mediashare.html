@@ -1,46 +1,76 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dika Media - Upload File</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      background-color: #1e88e5;
-      color: white;
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #2196f3, #00bcd4);
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
-      margin: 0;
+      color: white;
+      animation: fadeIn 1s ease-in;
     }
     h1 {
+      font-size: 2.5rem;
       margin-bottom: 20px;
+      animation: slideDown 1s ease-out;
     }
-    input, button {
+    input[type="file"] {
       padding: 10px;
-      margin: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: none;
+      border-radius: 10px;
+      background: white;
+      color: black;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease-in;
     }
     button {
-      background-color: #0d47a1;
+      padding: 12px 25px;
+      border: none;
+      background: #0d47a1;
       color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 10px;
       cursor: pointer;
+      transition: background 0.3s;
+      animation: pulse 2s infinite;
+    }
+    button:hover {
+      background: #1565c0;
     }
     #uploadStatus {
-      margin-top: 15px;
-      text-align: center;
+      margin-top: 20px;
       max-width: 80%;
+      text-align: center;
       word-break: break-all;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
   </style>
 </head>
 <body>
-  <h1>Dika Media - Upload File</h1>
+  <h1>📤 Dika Media</h1>
   <input type="file" id="fileInput">
   <button onclick="uploadFile()">Upload Sekarang</button>
   <div id="uploadStatus">Pilih file dan klik upload.</div>
@@ -52,11 +82,11 @@
       const file = fileInput.files[0];
 
       if (!file) {
-        alert('Pilih file dulu ya, Aa Dika!');
+        alert('Pilih file dulu atuh Aa Dika!');
         return;
       }
 
-      status.innerHTML = '⏳ Mengupload...';
+      status.innerHTML = '⏳ Sedang mengupload file...';
 
       const formData = new FormData();
       formData.append('file', file);
@@ -66,10 +96,11 @@
           method: 'POST',
           body: formData
         });
+
         const result = await response.json();
 
         if (result.success) {
-          status.innerHTML = `✅ Berhasil! Link download:<br><a href=\"${result.link}\" target=\"_blank\">${result.link}</a>`;
+          status.innerHTML = `✅ Sukses! Link download:<br><a href="${result.link}" target="_blank" style="color: #fff; text-decoration: underline">${result.link}</a>`;
         } else {
           status.innerHTML = `❌ Gagal upload: ${result.message || 'Tidak diketahui'}`;
         }
