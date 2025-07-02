@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dika Media - Upload File</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0d47a1;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+    #uploadStatus {
+      margin-top: 15px;
+    }
+    .link {
+      color: #90caf9;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dika Media - Upload File</h1>
+  <input type="file" id="fileInput" />
+  <button onclick="uploadFile()">Upload</button>
+  <div id="uploadStatus"></div>
+
+  <script>
+    async function uploadFile() {
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+      const status = document.getElementById('uploadStatus');
+      if (!file) {
+        alert('Pilih file terlebih dahulu.');
+        return;
+      }
+
+      status.innerHTML = 'Mengupload file...';
+
+      // Ganti URL ini dengan endpoint backend sesungguhnya (misal: Firebase, Supabase, atau server sendiri)
+      const dummyUploadURL = 'https://file.io';
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch(dummyUploadURL, {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+
+        if (data.success || data.link) {
+          status.innerHTML = `Sukses! Link file: <br><a class="link" href="${data.link}" target="_blank">${data.link}</a>`;
+        } else {
+          status.innerHTML = 'Gagal upload: ' + (data.message || 'Tidak diketahui');
+        }
+      } catch (error) {
+        status.innerHTML = 'Gagal upload: ' + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
