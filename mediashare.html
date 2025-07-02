@@ -73,6 +73,10 @@
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdsb3Juem1kanVxaGR6dXNkc3VnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0MjYyMTEsImV4cCI6MjA2NzAwMjIxMX0.2oEgSBd-RfFEV3nAV7yBjqh-G2V2NR3cPDcKeCg1XRo'
     );
 
+    function generateId(length = 8) {
+      return Math.random().toString(36).substring(2, 2 + length);
+    }
+
     async function upload() {
       const fileInput = document.getElementById('fileInput');
       const file = fileInput.files[0];
@@ -80,11 +84,12 @@
 
       if (!file) return alert('Pilih file dulu Aa Dika');
 
-      const randomName = Math.random().toString(36).substring(2, 10) + '-' + file.name;
+      const randomId = generateId();
+      const path = `dika/${randomId}-${file.name}`;
 
       const { data, error } = await supabase.storage
         .from('uploads')
-        .upload('dika/' + randomName, file, {
+        .upload(path, file, {
           cacheControl: '3600',
           upsert: true
         });
@@ -92,10 +97,14 @@
       if (error) {
         result.innerHTML = '❌ Error: ' + error.message;
       } else {
-        const { data: publicURL } = supabase.storage
-          .from('uploads')
-          .getPublicUrl('dika/' + randomName);
-        result.innerHTML = `✅ Link download:<br><a href="${publicURL.publicUrl}" target="_blank">${publicURL.publicUrl}</a>`;
+        const { data: publicURL } = supabase.storage.from('uploads').getPublicUrl(path);
+
+        // Simpan mapping di localStorage sebagai simulasi database
+        let links = JSON.parse(localStorage.getItem('shortLinks') || '{}');
+        links[randomId] = path;
+        localStorage.setItem('shortLinks', JSON.stringify(links));
+
+        result.innerHTML = `✅ Link pendek:<br><a href="#/d/${randomId}" target="_blank">https://dikamedia.vercel.app/d/${randomId}</a>`;
         loadFileList();
       }
     }
@@ -122,8 +131,28 @@
       }).join('');
     }
 
-    // Tampilkan daftar file saat pertama kali dibuka
-    loadFileList();
+    function handleRedirect() {
+      const hash = location.hash;
+      if (hash.startsWith('#/d/')) {
+        const id = hash.replace('#/d/', '');
+        const links = JSON.parse(localStorage.getItem('shortLinks') || '{}');
+        const fullPath = links[id];
+        if (fullPath) {
+          const { data: publicURL } = supabase.storage.from('uploads').getPublicUrl(fullPath);
+          location.href = publicURL.publicUrl;
+        } else {
+          document.body.innerHTML = '<h1>❌ Link tidak ditemukan</h1>';
+        }
+      }
+    }
+
+    window.onload = () => {
+      if (location.hash.startsWith('#/d/')) {
+        handleRedirect();
+      } else {
+        loadFileList();
+      }
+    };
   </script>
 </body>
 </html>
