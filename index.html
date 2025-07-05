@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Portofolio Handika Pratama Lim, developer cloud dan desainer kreatif dari Batam. Lihat karya dan proyek kolaboratifnya di bidang teknologi." />
     <meta name="keywords" content="Handika Pratama Lim, Web Developer Batam, Cloud Computing, Portofolio Desain, Developer Indonesia" />
     <meta name="author" content="Handika Pratama Lim" />
@@ -29,10 +29,11 @@
             background: linear-gradient(135deg, #FF7D1A 0%, #FFFFFF 100%);
             color: #222;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 40px 5vw;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
         }
         header {
             margin-bottom: 50px;
@@ -45,6 +46,11 @@
             letter-spacing: 3px;
             font-weight: 700;
             margin-bottom: 8px;
+        }
+        header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
         header p {
             font-size: 1.2rem;
@@ -84,7 +90,7 @@
             color: #555;
             margin-bottom: 10px;
         }
-        .whatsapp-btn {
+        .whatsapp-btn, .email-btn {
             display: inline-block;
             background: #25d366;
             color: white;
@@ -94,9 +100,16 @@
             text-decoration: none;
             box-shadow: 0 8px 20px rgba(37,211,102,0.5);
             transition: background-color 0.3s ease;
+            margin-top: 10px;
         }
         .whatsapp-btn:hover {
             background: #1ebc58;
+        }
+        .email-btn {
+            background: #FF7D1A;
+        }
+        .email-btn:hover {
+            background: #E57116;
         }
 
         /* Skills */
@@ -256,6 +269,9 @@
             header h1 {
                 font-size: 2.4rem;
             }
+            header h2 {
+                font-size: 1.6rem;
+            }
             .project-card h3 {
                 font-size: 1.3rem;
             }
@@ -286,7 +302,7 @@
     <p>🔹 Expert in web development and multimedia design</p>
     <div class="contact-buttons">
         <a href="https://wa.me/6289505666127" class="whatsapp-btn hover-animate" target="_blank" rel="noopener noreferrer">WhatsApp 0895-0566-6127</a>
-        <a href="mailto:handika@example.com" class="email-btn hover-animate" target="_blank">Email Me</a>
+        <a href="mailto:handika@hashiba.xyz" class="email-btn hover-animate" target="_blank">Email Me</a>
     </div>
 </div>
 
@@ -332,7 +348,7 @@
             <a href="#" class="case-study-btn">Technical Details</a>
         </div>
     </div>
-    [Add similar enhanced structure for other projects...]
+    <!-- Add similar enhanced structure for other projects... -->
 </section>
 
 <section class="experience animate fadeInUp" aria-label="Experience">
