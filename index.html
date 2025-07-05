@@ -1,9 +1,273 @@
-<<<<<<< SEARCH
-<header class="animate fadeInDown">
-    <h1 class="animate fadeInUp">Handika Pratama Lim</h1>
-    <p class="animate fadeInUp">Senior Developer & Cloud Computing | Creative Designer</p>
-</header>
-=======
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portofolio Handika Pratama Lim, developer cloud dan desainer kreatif dari Batam. Lihat karya dan proyek kolaboratifnya di bidang teknologi." />
+    <meta name="keywords" content="Handika Pratama Lim, Web Developer Batam, Cloud Computing, Portofolio Desain, Developer Indonesia" />
+    <meta name="author" content="Handika Pratama Lim" />
+    <meta property="og:title" content="Portofolio Handika Pratama Lim - Developer Batam" />
+    <meta property="og:description" content="Lihat karya-karya terbaik Handika di bidang teknologi, desain, dan cloud computing." />
+    <meta property="og:image" content="https://handika-kom.web.id/assets/preview.jpg" />
+    <meta property="og:url" content="https://handika-kom.web.id" />
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Portofolio Handika Pratama Lim - Web Developer Batam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style-animate.css">
+
+    <style>
+        /* Reset */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FF7D1A 0%, #FFFFFF 100%);
+            color: #222;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            margin-bottom: 50px;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        header h1 {
+            font-size: 3.2rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        header p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Profile */
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+            padding: 30px;
+            max-width: 360px;
+            text-align: center;
+            margin-bottom: 50px;
+            transition: transform 0.3s ease;
+        }
+        .profile-card:hover {
+            transform: translateY(-10px);
+        }
+        .profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 18px;
+            border: 6px solid #FF7D1A;
+        }
+        .profile-card h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        .profile-card p {
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(37,211,102,0.5);
+            transition: background-color 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            background: #1ebc58;
+        }
+
+        /* Skills */
+        .skills {
+            max-width: 900px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        .skill {
+            background: #ffffffaa;
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0d3b66;
+            box-shadow: 0 6px 15px rgba(13,59,102,0.2);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: default;
+        }
+        .skill:hover {
+            background: #0d3b66;
+            color: white;
+        }
+
+        /* Projects */
+        .projects {
+            max-width: 900px;
+            margin-bottom: 70px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+        .project-card {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 18px 35px rgba(0,0,0,0.1);
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .project-card:hover {
+            box-shadow: 0 28px 55px rgba(0,0,0,0.2);
+            transform: translateY(-8px);
+        }
+        .project-card h3 {
+            color: #0d3b66;
+            margin-bottom: 15px;
+            font-size: 1.7rem;
+        }
+        .project-card p {
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        .project-card a {
+            align-self: start;
+            background: #FF7D1A;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(255,125,26,0.5);
+            transition: background-color 0.3s ease;
+        }
+        .project-card a:hover {
+            background: #E57116;
+        }
+
+        /* Experience */
+        .experience {
+            max-width: 900px;
+            background: white;
+            border-radius: 25px;
+            padding: 30px 35px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+            margin-bottom: 70px;
+            color: #0d3b66;
+            font-weight: 600;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            user-select: none;
+        }
+
+        /* Founder */
+        .founder-section {
+            max-width: 900px;
+            background: #FF7D1A;
+            border-radius: 25px;
+            padding: 35px 40px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 18px 40px rgba(255,125,26,0.7);
+            margin-bottom: 70px;
+        }
+        .founder-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .founder-section h3 {
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+        }
+        .founder-section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Partners */
+        .partners-section {
+            max-width: 900px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .partners-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+        }
+        .partner-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .partner-link {
+            background: white;
+            color: #FF7D1A;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 14px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 12px 30px rgba(255,125,26,0.3);
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .partner-link:hover {
+            background: #FF7D1A;
+            color: white;
+            box-shadow: 0 18px 45px rgba(255,125,26,0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 440px) {
+            header h1 {
+                font-size: 2.4rem;
+            }
+            .project-card h3 {
+                font-size: 1.3rem;
+            }
+            .skill {
+                font-size: 0.9rem;
+                padding: 8px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
 <header class="animate fadeInDown">
     <div class="hero-text">
         <h1 class="animate fadeInUp">Handika Pratama Lim</h1>
@@ -11,5 +275,84 @@
         <p class="animate fadeInUp delay-2">I transform ideas into exceptional digital experiences with cutting-edge cloud solutions and creative design</p>
     </div>
 </header>
->>>>>>> REPLACE
 
+<div class="profile-card animate zoomIn">
+    <img src="profile.jpg" alt="Foto Handika Pratama Lim" />
+    <h2>Handika Pratama Lim</h2>
+    <p class="role">Cloud Solutions Architect & Senior Developer</p>
+    <p>📍 Based in Batam, Indonesia</p>
+    <p>🔹 10+ years experience in cloud technologies</p>
+    <p>🔹 Passionate about digital transformation</p>
+    <p>🔹 Expert in web development and multimedia design</p>
+    <div class="contact-buttons">
+        <a href="https://wa.me/6289505666127" class="whatsapp-btn hover-animate" target="_blank" rel="noopener noreferrer">WhatsApp 0895-0566-6127</a>
+        <a href="mailto:handika@example.com" class="email-btn hover-animate" target="_blank">Email Me</a>
+    </div>
+</div>
+
+<section class="skills animate slideInUp" aria-label="Skill Set">
+    <div class="skill">Front End Developer</div>
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">Node.js</div>
+    <div class="skill">PHP</div>
+    <div class="skill">Cyber Security</div>
+    <div class="skill">Design Grafis</div>
+    <div class="skill">Video Cinematic Editing</div>
+    <div class="skill">Video Editor</div>
+</section>
+
+<section class="projects animate fadeInUp" aria-label="Projects">
+    <div class="project-card animate fadeInLeft">
+        <h3>BREXLER STUDIO</h3>
+        <p class="tech-stack">React.js | Node.js | AWS</p>
+        <p>Membangun studio kreatif yang menjadi pusat inovasi digital dengan layanan desain grafis, pengeditan video profesional, dan solusi multimedia komprehensif. Bertanggung jawab untuk infrastruktur cloud dan pengembangan front-end.</p>
+        <ul class="project-features">
+            <li>✔ Dashboard admin berbasis cloud</li>
+            <li>✔ Sistem manajemen konten otomatis</li>
+            <li>✔ Integrasi pembayaran digital</li>
+        </ul>
+        <div class="project-links">
+            <a href="https://handika-kom.web.id/hi.html" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a href="#" class="case-study-btn">Case Study</a>
+        </div>
+    </div>
+    <div class="project-card animate fadeInRight">
+        <h3>Advent School Batam</h3>
+        <p class="tech-stack">Laravel | MySQL | DigitalOcean</p>
+        <p>Platform pembelajaran online lengkap dengan sistem manajemen sekolah, portal orang tua, dan pusat sumber daya digital. Dibangun dengan arsitektur mikroservis untuk skalabilitas tinggi.</p>
+        <ul class="project-features">
+            <li>✔ Sistem absensi berbasis QR Code</li>
+            <li>✔ Laporan akademik realtime</li>
+            <li>✔ Integrasi dengan Google Classroom</li>
+        </ul>
+        <div class="project-links">
+            <a href="https://adventschoolbatam.my.id/" target="_blank" rel="noopener noreferrer">View Project</a>
+            <a href="#" class="case-study-btn">Technical Details</a>
+        </div>
+    </div>
+    [Add similar enhanced structure for other projects...]
+</section>
+
+<section class="experience animate fadeInUp" aria-label="Experience">
+    <p><strong>Co Founder Of Garuda Cloud Indonesia</strong> — Berfokus pada layanan cloud computing dan hosting profesional di Indonesia.</p>
+    <p><strong>Founder Of Waka Entertainment</strong> — Platform hiburan kreatif yang mengedepankan konten lokal dan multimedia.</p>
+</section>
+
+<section class="founder-section animate zoomIn" aria-label="Founder Information">
+    <h2>Handika Pratama Lim</h2>
+    <h3>Co Founder Of Garuda Cloud Indonesia</h3>
+    <p>Seorang developer dan manajer cloud computing yang bersemangat menggabungkan teknologi dan kreativitas untuk menciptakan solusi inovatif dan berkualitas tinggi.</p>
+</section>
+
+<section class="partners-section animate slideInUp" aria-label="Partners">
+    <h2>Partners & Collaborations</h2>
+    <div class="partner-links">
+        <a class="partner-link hover-animate" href="https://brexlerstudio.com" target="_blank" rel="noopener noreferrer">BREXLER STUDIO</a>
+        <a class="partner-link hover-animate" href="https://panel.garudacloud.id" target="_blank" rel="noopener noreferrer">GARUDA CLOUD PANEL</a>
+    </div>
+</section>
+
+</body>
+</html>
