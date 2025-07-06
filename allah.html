@@ -19,6 +19,17 @@
       color: #e0e0e0;
     }
 
+    .notif-btn {
+      width: 100%;
+      background: #ff9800;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
     header {
       background: #009688;
       color: white;
@@ -100,9 +111,14 @@
   </style>
 </head>
 <body>
+  <button class="notif-btn" onclick="startNotification()">🔔 Aktifkan Notifikasi Motivasi</button>
+
   <audio autoplay loop>
     <source src="https://www.islamcan.com/audio/nasheed/nasheed1.mp3" type="audio/mpeg">
     Browser tidak mendukung audio.
+  </audio>
+  <audio id="notifSound">
+    <source src="https://notificationsounds.com/storage/sounds/file-sounds-1153-pristine.mp3" type="audio/mpeg">
   </audio>
 
   <header>🌿 50 Motivasi Islam yang Menginspirasi 🌿</header>
@@ -207,6 +223,26 @@
 
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
+    }
+
+    function startNotification() {
+      if (!("Notification" in window)) {
+        alert("Browser kamu tidak mendukung notifikasi");
+        return;
+      }
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          let index = 0;
+          setInterval(() => {
+            const notif = new Notification("Motivasi Islam", {
+              body: quotes[index % quotes.length],
+              icon: "https://cdn-icons-png.flaticon.com/512/1995/1995574.png"
+            });
+            document.getElementById("notifSound").play();
+            index++;
+          }, 2000);
+        }
+      });
     }
   </script>
 
