@@ -11,6 +11,12 @@
       margin: 0;
       padding: 0;
       color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
     }
 
     header {
@@ -53,6 +59,29 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
       animation: fadeIn 1s ease-in-out;
+      position: relative;
+    }
+
+    body.dark-mode .quote {
+      background: #1e1e1e;
+      border-left-color: #80cbc4;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #009688;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 0.8em;
+    }
+
+    .copy-btn:hover {
+      background: #00796b;
     }
 
     footer {
@@ -71,6 +100,10 @@
   </style>
 </head>
 <body>
+  <audio autoplay loop>
+    <source src="https://www.islamcan.com/audio/nasheed/nasheed1.mp3" type="audio/mpeg">
+    Browser tidak mendukung audio.
+  </audio>
 
   <header>🌿 50 Motivasi Islam yang Menginspirasi 🌿</header>
 
@@ -79,11 +112,10 @@
     <a href="#quotes">Kata-Kata</a>
     <a href="#tentang">Tentang</a>
     <a href="#kontak">Kontak</a>
+    <button onclick="toggleDarkMode()" style="margin-left: 20px; padding: 5px 10px; background:#004d40; color:white; border:none; border-radius:5px; cursor:pointer">Dark Mode</button>
   </nav>
 
-  <div class="container" id="quotes">
-    <!-- Kutipan akan diisi otomatis -->
-  </div>
+  <div class="container" id="quotes"></div>
 
   <div class="container" id="tentang">
     <h2>Tentang Website Ini</h2>
@@ -99,7 +131,8 @@
 
   <script>
     const quotes = [
-      "Allah tidak membebani seseorang melainkan sesuai kesanggupannya. (QS. Al-Baqarah: 286)",
+      // ... 50 quotes tetap sama seperti sebelumnya
+            "Allah tidak membebani seseorang melainkan sesuai kesanggupannya. (QS. Al-Baqarah: 286)",
       "Jangan pernah meremehkan kekuatan doa.",
       "Sabar adalah kunci dari segala kebahagiaan.",
       "Rezeki tidak akan tertukar.",
@@ -148,15 +181,42 @@
       "Doa seorang hamba tidak akan pernah sia-sia.",
       "Kejujuran adalah jalan ke surga.",
       "Ridha Allah adalah tujuan utama."
+      "Allah tidak membebani seseorang melainkan sesuai kesanggupannya. (QS. Al-Baqarah: 286)",
+      "Jangan pernah meremehkan kekuatan doa.",
+      "Sabar adalah kunci dari segala kebahagiaan.",
+      // ... (tambahkan sisa kutipan di sini)
     ];
 
-    const container = document.querySelector('.container');
+    // Tambahan 5 kutipan dari ChatGPT
+    quotes.push(
+      "Jadikan Al-Qur'an sebagai teman harianmu.",
+      "Tersenyumlah, karena senyum adalah sedekah.",
+      "Ilmu tanpa amal bagaikan pohon tak berbuah.",
+      "Mulailah harimu dengan Bismillah.",
+      "Tak ada solusi terbaik selain kembali kepada Allah."
+    );
+
+    const container = document.getElementById('quotes');
     quotes.forEach(q => {
       const div = document.createElement('div');
       div.className = 'quote';
-      div.textContent = q;
+      div.innerHTML = `
+        ${q}
+        <button class="copy-btn" onclick="copyText(this)">Salin</button>
+      `;
       container.appendChild(div);
     });
+
+    function copyText(btn) {
+      const text = btn.parentElement.textContent.replace("Salin", "").trim();
+      navigator.clipboard.writeText(text);
+      btn.textContent = 'Disalin!';
+      setTimeout(() => btn.textContent = 'Salin', 1500);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
   </script>
 
 </body>
