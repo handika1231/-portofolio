@@ -1,74 +1,129 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WEB PALING SERIUS 😐</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Motivasi Islam</title>
   <style>
     body {
-      background: linear-gradient(45deg, #ff00cc, #3333ff);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #fff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: #009688;
       color: white;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      padding: 20px 0;
       text-align: center;
-      animation: kedip 0.5s infinite;
-    }
-
-    @keyframes kedip {
-      0%, 100% { background-color: #ff00cc; }
-      50% { background-color: #3333ff; }
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-top: 50px;
-      transform: rotate(-5deg);
-      animation: goyang 0.3s infinite;
-    }
-
-    @keyframes goyang {
-      0% { transform: rotate(-5deg); }
-      50% { transform: rotate(5deg); }
-      100% { transform: rotate(-5deg); }
-    }
-
-    .emoji {
       font-size: 2em;
-      margin: 20px;
-      animation: jatuh 2s infinite;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    @keyframes jatuh {
-      0% { transform: translateY(-100px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    .warning {
-      background-color: yellow;
-      color: red;
-      font-weight: bold;
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
       padding: 20px;
-      border: 5px dashed red;
-      margin: 30px;
-      transform: rotate(10deg);
     }
 
-    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-      h1::after {
-        content: " (KHUSUS IPAD 😎)";
-        display: block;
-        font-size: 0.5em;
-        color: lime;
-      }
+    .quote {
+      background: #ffffff;
+      margin: 15px 0;
+      padding: 20px;
+      border-left: 5px solid #009688;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      background: #f1f1f1;
+      font-weight: bold;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
-  <h1>WOY JANGAN LUPA COLI SAMPE KERING COO PEHH ENAK BETT ANJAYYYYYYYYYYYY!!! 😐</h1>
-  <div class="emoji">🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣</div>
-  <div class="warning">INGET BRO SAMPAI KERING!!!!!!!!!!! SAMPE MANDUL KALAU BISAA!😤</div>
-  <p>🚫 INGET ALLAH TAPI ANJING KAU BAJINGAN KAU YG COLI🚫</p>
-  <p>🧠 ALLAH ITU NYATA BOS NERAKA DAN TAKDIR BISA AJA DI DEPAN MATA JANGAN LUPA ALLAH SHOLAT 5 WAKRU ELU SKRNG ANJG ALLAH KANGEN AKAN KEHADIRAN MU</p>
-  <p>🤓 SHOLAT TOBAT LU SKRNG WUDHU LU SKRNG KALAU GA GW BAKAL BAKAR LU ANYINKK!</p>
-  <div class="emoji">😂😂😂😂😂😂😂😂😂😂</div>
+
+  <header>🌿 50 Motivasi Islam yang Menginspirasi 🌿</header>
+
+  <div class="container">
+    <!-- Kutipan akan diisi otomatis -->
+  </div>
+
+  <footer>TAG PROJEK BY HANDIKA AL FAH RUH</footer>
+
+  <script>
+    const quotes = [
+      "Allah tidak membebani seseorang melainkan sesuai kesanggupannya. (QS. Al-Baqarah: 286)",
+      "Jangan pernah meremehkan kekuatan doa.",
+      "Sabar adalah kunci dari segala kebahagiaan.",
+      "Rezeki tidak akan tertukar.",
+      "Hidup sederhana, hati bahagia.",
+      "Yakin, Allah selalu bersama kita.",
+      "Semua yang terjadi adalah kehendak Allah.",
+      "Jika Allah menghendaki, maka terjadi.",
+      "Allah Maha Mengetahui segalanya.",
+      "Tiada daya dan kekuatan kecuali dengan izin Allah.",
+      "Bersyukur atas yang sedikit, Allah tambahkan nikmat.",
+      "Setiap kesulitan pasti ada kemudahan. (QS. Al-Insyirah)",
+      "Jangan putus asa dari rahmat Allah.",
+      "Berprasangka baiklah kepada Allah.",
+      "Istiqomah lebih baik daripada seribu karomah.",
+      "Hijrah itu berat, tapi surga itu indah.",
+      "Shalat adalah penyejuk hati.",
+      "Dzikir menenangkan jiwa.",
+      "Jangan takut kehilangan dunia, takutlah kehilangan iman.",
+      "Dekatkan diri pada Allah, maka hidupmu akan tenang.",
+      "Dunia hanya tempat persinggahan.",
+      "Cintai Allah, maka hatimu akan utuh.",
+      "Semua akan indah pada waktunya, jika sabar dan tawakal.",
+      "Berdoalah, karena doa adalah senjata orang beriman.",
+      "Tak ada yang sia-sia jika diniatkan karena Allah.",
+      "Ikhlas adalah rahasia ketenangan hati.",
+      "Allah tahu kapan waktunya paling tepat.",
+      "Jangan tunda taubat, karena maut bisa datang kapan saja.",
+      "Allah memelihara orang-orang yang beriman.",
+      "Tak ada yang lebih kuat dari orang yang menjaga shalatnya.",
+      "Keberkahan itu datang dari ketaatan.",
+      "Setiap luka pasti ada obatnya, dan Allah sebaik-baik penyembuh.",
+      "Semakin banyak bersyukur, semakin banyak nikmat datang.",
+      "Allah tidak tidur, Dia melihat segalanya.",
+      "Bersihkan hati, maka hidup akan lebih ringan.",
+      "Pemaaf adalah sifat mulia seorang mukmin.",
+      "Kekayaan sejati adalah hati yang merasa cukup.",
+      "Lebih baik diam daripada berkata buruk.",
+      "Setiap ujian membawa pelajaran yang berharga.",
+      "Kegagalan bukan akhir, tapi awal yang baru.",
+      "Selalu ada cahaya dalam doa-doamu.",
+      "Jangan bandingkan hidupmu dengan orang lain.",
+      "Allah tahu isi hatimu, walau tak kau ucapkan.",
+      "Selalu sertakan Allah dalam setiap langkahmu.",
+      "Musibah adalah bentuk cinta Allah untuk mendekatkanmu.",
+      "Belajar dari kesalahan, dan teruslah taat.",
+      "Doa seorang hamba tidak akan pernah sia-sia.",
+      "Kejujuran adalah jalan ke surga.",
+      "Ridha Allah adalah tujuan utama."
+    ];
+
+    const container = document.querySelector('.container');
+    quotes.forEach(q => {
+      const div = document.createElement('div');
+      div.className = 'quote';
+      div.textContent = q;
+      container.appendChild(div);
+    });
+  </script>
+
 </body>
 </html>
