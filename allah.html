@@ -108,6 +108,30 @@
       from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
     }
+
+    /* Tambahan untuk animasi scroll teks */
+    .scroll-section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .reveal-text {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1s ease;
+      font-size: 2.5em;
+      text-align: center;
+      font-weight: bold;
+      color: #00695c;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.2), 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .reveal-text.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -130,6 +154,11 @@
     <a href="#kontak">Kontak</a>
     <button onclick="toggleDarkMode()" style="margin-left: 20px; padding: 5px 10px; background:#004d40; color:white; border:none; border-radius:5px; cursor:pointer">Dark Mode</button>
   </nav>
+
+  <!-- Tambahan: Teks besar yang muncul saat discroll -->
+  <div class="scroll-section">
+    <div class="reveal-text">Allah Forever I Live Allah</div>
+  </div>
 
   <div class="container" id="quotes"></div>
 
@@ -244,7 +273,22 @@
         }
       });
     }
-  </script>
 
+    // Tambahan: animasi scroll reveal
+    const revealElements = document.querySelectorAll('.reveal-text');
+
+    function revealOnScroll() {
+      const triggerBottom = window.innerHeight * 0.85;
+      revealElements.forEach(el => {
+        const elTop = el.getBoundingClientRect().top;
+        if (elTop < triggerBottom) {
+          el.classList.add('show');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
 </body>
 </html>
