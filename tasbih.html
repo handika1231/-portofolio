@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Tasbih Counter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #FFC107;
+            --dark: #212121;
+            --light: #f5f5f5;
+            --gray: #9E9E9E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+            outline: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray);
+        }
+
+        .btn-secondary:hover {
+            background-color: #757575;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-3 {
+            margin-top: 1rem;
+        }
+
+        .link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .alert {
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .alert-danger {
+            background-color: #FFEBEE;
+            color: #C62828;
+            border: 1px solid #EF9A9A;
+        }
+
+        .alert-success {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            border: 1px solid #A5D6A7;
+        }
+
+        /* Tasbih Counter Styles */
+        .counter-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .counter {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .counter-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .counter-btn:active {
+            transform: translateY(1px);
+        }
+
+        .counter-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .counter-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+
+        .logout-btn {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            margin-top: 1rem;
+        }
+
+        .logout-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .user-greeting {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .user-greeting span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Animation classes */
+        .bounce {
+            animation: bounce 0.5s;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Loading spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 576px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .counter {
+                font-size: 3.5rem;
+            }
+            
+            .counter-btn {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div class="card" id="login-card">
+            <div class="card-header">
+                <h1>Welcome to Digital Tasbih</h1>
+            </div>
+            <div class="card-body">
+                <div id="login-alert" class="alert alert-danger hidden"></div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn" id="login-btn">Login</button>
+                </form>
+                <p class="text-center mt-3">Don't have an account? <span class="link" id="show-register">Register</span></p>
+            </div>
+        </div>
+
+        <!-- Register Form -->
+        <div class="card hidden" id="register-card">
+            <div class="card-header">
+                <h1>Create an Account</h1>
+            </div>
+            <div class="card-body">
+                <div id="register-alert" class="alert alert-danger hidden"></div>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" id="register-username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password</label>
+                        <input type="password" id="register-confirm-password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn" id="register-btn">Register</button>
+                </form>
+                <p class="text-center mt-3">Already have an account? <span class="link" id="show-login">Login</span></p>
+            </div>
+        </div>
+
+        <!-- Tasbih Counter -->
+        <div class="card hidden" id="tasbih-card">
+            <div class="card-header">
+                <h1>Digital Tasbih Counter</h1>
+            </div>
+            <div class="card-body">
+                <div id="greeting" class="user-greeting">Hello, <span id="username-display"></span>!</div>
+                <div class="counter-container">
+                    <div class="counter" id="counter">0</div>
+                    <button class="counter-btn" id="count-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="today-count">0</div>
+                        <div class="stat-label">Today</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="weekly-count">0</div>
+                        <div class="stat-label">This Week</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-count">0</div>
+                        <div class="stat-label">All Time</div>
+                    </div>
+                </div>
+                <button class="btn logout-btn" id="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="card hidden" id="loading-card">
+            <div class="card-header">
+                <h1>Loading</h1>
+            </div>
+            <div class="card-body" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginCard = document.getElementById('login-card');
+        const registerCard = document.getElementById('register-card');
+        const tasbihCard = document.getElementById('tasbih-card');
+        const loadingCard = document.getElementById('loading-card');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const loginAlert = document.getElementById('login-alert');
+        const registerAlert = document.getElementById('register-alert');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        const counterDisplay = document.getElementById('counter');
+        const countBtn = document.getElementById('count-btn');
+        const todayCount = document.getElementById('today-count');
+        const weeklyCount = document.getElementById('weekly-count');
+        const totalCount = document.getElementById('total-count');
+        const usernameDisplay = document.getElementById('username-display');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // State
+        let currentUser = null;
+        let counter = 0;
+        let db = {
+            users: [],
+            counts: []
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDatabase();
+            checkAuth();
+            
+            // Event Listeners
+            showRegister.addEventListener('click', () => {
+                loginCard.classList.add('hidden');
+                registerCard.classList.remove('hidden');
+                registerCard.classList.add('fade-in');
+            });
+            
+            showLogin.addEventListener('click', () => {
+                registerCard.classList.add('hidden');
+                loginCard.classList.remove('hidden');
+                loginCard.classList.add('fade-in');
+            });
+            
+            loginForm.addEventListener('submit', handleLogin);
+            registerForm.addEventListener('submit', handleRegister);
+            countBtn.addEventListener('click', handleCount);
+            logoutBtn.addEventListener('click', handleLogout);
+        });
+
+        // Functions
+        function loadDatabase() {
+            const savedDb = localStorage.getItem('tasbihDB');
+            if (savedDb) {
+                db = JSON.parse(savedDb);
+            } else {
+                // Initialize with some sample data if needed
+                db = {
+                    users: [
+                        { id: 1, name: "Test User", username: "test", password: "test123" }
+                    ],
+                    counts: []
+                };
+                saveDatabase();
+            }
+        }
+
+        function saveDatabase() {
+            localStorage.setItem('tasbihDB', JSON.stringify(db));
+        }
+
+        function checkAuth() {
+            const loggedInUser = localStorage.getItem('tasbihUser');
+            if (loggedInUser) {
+                currentUser = JSON.parse(loggedInUser);
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    showTasbihCounter();
+                    loadUserData();
+                }, 1000);
+            } else {
+                showLoginForm();
+            }
+        }
+
+        function showLoading() {
+            loginCard.classList.add('hidden');
+            registerCard.classList.add('hidden');
+            tasbihCard.classList.add('hidden');
+            loadingCard.classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            loadingCard.classList.add('hidden');
+        }
+
+        function showLoginForm() {
+            loginCard.classList.remove('hidden');
+            registerCard.classList.add('hidden');
+            tasbihCard.classList.add('hidden');
+        }
+
+        function showTasbihCounter() {
+            loginCard.classList.add('hidden');
+            registerCard.classList.add('hidden');
+            tasbihCard.classList.remove('hidden');
+            tasbihCard.classList.add('fade-in');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            
+            const user = db.users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('tasbihUser', JSON.stringify(user));
+                showLoading();
+                setTimeout(() => {
+                    hideLoading();
+                    showTasbihCounter();
+                    loadUserData();
+                }, 1000);
+            } else {
+                showAlert(loginAlert, 'Invalid username or password', 'danger');
+            }
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                showAlert(registerAlert, 'Passwords do not match', 'danger');
+                return;
+            }
+            
+            if (db.users.some(u => u.username === username)) {
+                showAlert(registerAlert, 'Username already exists', 'danger');
+                return;
+            }
+            
+            const newUser = {
+                id: db.users.length > 0 ? Math.max(...db.users.map(u => u.id)) + 1 : 1,
+                name,
+                username,
+                password
+            };
+            
+            db.users.push(newUser);
+            saveDatabase();
+            
+            showAlert(registerAlert, 'Registration successful! Please login', 'success');
+            setTimeout(() => {
+                registerForm.reset();
+                registerCard.classList.add('hidden');
+                loginCard.classList.remove('hidden');
+                loginCard.classList.add('fade-in');
+            }, 1500);
+        }
+
+        function handleCount() {
+            counter++;
+            counterDisplay.textContent = counter;
+            counterDisplay.classList.add('bounce');
+            
+            setTimeout(() => {
+                counterDisplay.classList.remove('bounce');
+            }, 500);
+            
+            // Save count to database
+            const today = new Date().toISOString().split('T')[0];
+            let userCount = db.counts.find(c => c.userId === currentUser.id && c.date === today);
+            
+            if (userCount) {
+                userCount.count = counter;
+            } else {
+                userCount = {
+                    userId: currentUser.id,
+                    date: today,
+                    count: counter
+                };
+                db.counts.push(userCount);
+            }
+            
+            saveDatabase();
+            updateStats();
+        }
+
+        function loadUserData() {
+            usernameDisplay.textContent = currentUser.name;
+            
+            const today = new Date().toISOString().split('T')[0];
+            const todayCountData = db.counts.find(c => c.userId === currentUser.id && c.date === today);
+            
+            counter = todayCountData ? todayCountData.count : 0;
+            counterDisplay.textContent = counter;
+            
+            updateStats();
+        }
+
+        function updateStats() {
+            const today = new Date().toISOString().split('T')[0];
+            const todayCountData = db.counts.find(c => c.userId === currentUser.id && c.date === today);
+            todayCount.textContent = todayCountData ? todayCountData.count : 0;
+            
+            // Calculate weekly count
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            const weeklyCounts = db.counts.filter(c => 
+                c.userId === currentUser.id && 
+                new Date(c.date) >= oneWeekAgo
+            );
+            const weeklyTotal = weeklyCounts.reduce((sum, c) => sum + c.count, 0);
+            weeklyCount.textContent = weeklyTotal;
+            
+            // Calculate total count
+            const totalCounts = db.counts.filter(c => c.userId === currentUser.id);
+            const total = totalCounts.reduce((sum, c) => sum + c.count, 0);
+            totalCount.textContent = total;
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('tasbihUser');
+            showLoginForm();
+            loginForm.reset();
+        }
+
+        function showAlert(element, message, type) {
+            element.textContent = message;
+            element.classList.remove('hidden');
+            element.classList.remove('alert-success', 'alert-danger');
+            element.classList.add(`alert-${type}`);
+            
+            setTimeout(() => {
+                element.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
