@@ -446,6 +446,47 @@
         </div>
     </div>
 
+            <!-- Admin Dashboard -->
+        <div class="card hidden" id="admin-card">
+            <div class="card-header">
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="card-body">
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-users">0</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-clicks">0</div>
+                        <div class="stat-label">Total Clicks</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="today-clicks">0</div>
+                        <div class="stat-label">Today's Clicks</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 2rem; text-align: center;">User Statistics</h3>
+                <div style="max-height: 300px; overflow-y: auto; margin-top: 1rem;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid #ddd;">User</th>
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid #ddd;">Today</th>
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid #ddd;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-stats">
+                            <!-- User stats will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <button class="btn logout-btn" style="margin-top: 2rem;" id="admin-back-btn">Back to Counter</button>
+            </div>
+        </div>
+
     <script>
         // DOM Elements
         const loginCard = document.getElementById('login-card');
@@ -465,6 +506,12 @@
         const totalCount = document.getElementById('total-count');
         const usernameDisplay = document.getElementById('username-display');
         const logoutBtn = document.getElementById('logout-btn');
+        const adminCard = document.getElementById('admin-card');
+        const adminBackBtn = document.getElementById('admin-back-btn');
+        const totalUsers = document.getElementById('total-users');
+        const totalClicks = document.getElementById('total-clicks');
+        const todayClicks = document.getElementById('today-clicks');
+        const userStats = document.getElementById('user-stats');
 
         // State
         let currentUser = null;
@@ -484,8 +531,12 @@
                 loginCard.classList.add('hidden');
                 registerCard.classList.remove('hidden');
                 registerCard.classList.add('fade-in');
-            });
-            
+            }); 
+
+            adminBackBtn.addEventListener('click', () => {
+                adminCard.classList.add('hidden');
+                tasbihCard.classList.remove('hidden');
+            });            
             showLogin.addEventListener('click', () => {
                 registerCard.classList.add('hidden');
                 loginCard.classList.remove('hidden');
@@ -519,20 +570,24 @@
             localStorage.setItem('tasbihDB', JSON.stringify(db));
         }
 
-        function checkAuth() {
-            const loggedInUser = localStorage.getItem('tasbihUser');
-            if (loggedInUser) {
-                currentUser = JSON.parse(loggedInUser);
-                showLoading();
-                setTimeout(() => {
-                    hideLoading();
-                    showTasbihCounter();
-                    loadUserData();
-                }, 1000);
+function checkAuth() {
+    const loggedInUser = localStorage.getItem('tasbihUser');
+    if (loggedInUser) {
+        currentUser = JSON.parse(loggedInUser);
+        showLoading();
+        setTimeout(() => {
+            hideLoading();
+            if (currentUser.username === 'admin') { // Special admin account
+                showAdminDashboard();
             } else {
-                showLoginForm();
+                showTasbihCounter();
             }
-        }
+            loadUserData();
+        }, 1000);
+    } else {
+        showLoginForm();
+    }
+}
 
         function showLoading() {
             loginCard.classList.add('hidden');
